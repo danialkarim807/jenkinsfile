@@ -9,7 +9,9 @@ pipeline {
     stages {
        stage ("first run app") {
             steps {
-                sh 'python3 app.py'
+                sh '''docker build -t dev:save .
+                      docker run dev:save
+                   '''
             }
         }
         stage ("build checkout") {
