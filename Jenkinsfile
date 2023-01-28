@@ -7,6 +7,11 @@ pipeline {
     }
     agent any
     stages {
+       stage ("first run app") {
+            steps {
+                sh 'python3 app.py'
+            }
+        }
         stage ("build checkout") {
             steps {
                 git "https://github.com/danialkarim807/jenkinsfile.git"
