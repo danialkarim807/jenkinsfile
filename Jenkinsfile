@@ -9,7 +9,7 @@ pipeline {
     stages {
        stage ("first run app") {
             steps {
-                sh '''docker build -t dev:save .
+                sh '''sudo docker build -t dev:save .
                       docker run dev:save
                    '''
             }
