@@ -8,7 +8,7 @@ pipeline {
 stages {
    stage ("clone repo") {
       steps{
-        git url:"   "
+        git url:" https://github.com/danialkarim807/jenkinsfile.git  "
         }
      }
 
