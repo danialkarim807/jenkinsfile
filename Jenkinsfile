@@ -5,36 +5,30 @@ pipeline {
       }
    }
 
-stages {
-   stage ("clone repo") {
-      steps{
-        git url:" https://github.com/danialkarim807/jenkinsfile.git  "
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/danialkarim807/jenkinsfile.git']])
+            }
         }
-     }
-
-   stage ("Build") {
-      steps{
-        sh 'pip install flask'
+        stage ("build") {
+            steps {
+                git branch: 'main', url: 'https://github.com/danialkarim807/jenkinsfile.git'
+                sh 'python3 app.py'
+            }
         }
-      }
-
-   stage ("Testing"){
-      steps {
-         sh 'python3 -m unittest discover -s tests/'
-         }
-      }
-
-   stage ("Deploy"){
-      steps {
-         sh 'pip install flask'
-         sh 'python3 app.py &'
-      }
-  
+        stage ("test") {
+            steps {
+                sh 'python3 -m pytest'
+            }
+        }
     }
+}
 
-  }
-
-} 
+  
 
 
 
