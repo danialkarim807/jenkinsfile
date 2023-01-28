@@ -14,7 +14,7 @@ stages {
 
    stage ("Build") {
       steps{
-        sh 'pip3 install -r requirements.txt'
+        sh 'pip install flask'
         }
       }
 
@@ -26,7 +26,7 @@ stages {
 
    stage ("Deploy"){
       steps {
-         sh 'pip3 install -t requirements.txt'
+         sh 'pip install flask'
          sh 'python3 app.py &'
       }
   
